@@ -1,0 +1,43 @@
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+coverage/
+
+# NCrunch
+*NCrunch*
+*.ncrunch*
+.*crunch*.local.xml
+
+
+.ionide/
+.vs/
+.DS_Store
+
+# Generated files
+log.json
+
+# vs code files
+CasesUi/src/CasesUi/wwwroot/
+node_modules/
+.nyc_output/
+
+
+*.idea
+.fake
+.ionide
+
+CasesUi/src/ClientApp/junit.xml
+CasesUi/src/ClientApp/test-report.xml
