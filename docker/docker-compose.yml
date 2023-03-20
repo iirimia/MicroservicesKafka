@@ -25,7 +25,7 @@ services:
     depends_on:
       - zookeeper
   sqlserver:
-    image: "mcr.microsoft.com/mssql/server:2017-latest-ubuntu"
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
     container_name: sql-container
     environment:
       ACCEPT_EULA: "Y"

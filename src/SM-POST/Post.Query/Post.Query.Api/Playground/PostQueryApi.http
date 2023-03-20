@@ -1,0 +1,22 @@
+﻿# Get all post with comments
+GET https://localhost:7144/api/v1/PostLookup/withComments
+
+####
+
+# Get all post written by an user
+GET https://localhost:7144/api/v1/PostLookup/byAuthor/user3
+
+####
+
+# Get post by Id
+GET https://localhost:7144/api/v1/PostLookup/byId/28CBB341-BE78-4901-966B-11961288FA5B
+
+####
+
+# Get all posts
+GET https://localhost:7144/api/v1/PostLookup
+
+####
+
+# Get all posts with likes more than 4
+GET https://localhost:7144/api/v1/PostLookup/withLikes/4

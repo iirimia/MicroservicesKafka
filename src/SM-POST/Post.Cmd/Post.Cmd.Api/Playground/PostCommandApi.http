@@ -1,7 +1,45 @@
-﻿POST https://localhost:7275/api/v1/NewPost
+﻿#Add new Post
+POST https://localhost:7275/api/v1/NewPost
 Content-Type: application/json
 
 {
   "author": "User8",
   "message": "Getting confusing"
 }
+
+####
+
+#Add comment to a post
+PUT https://localhost:7275/api/v1/AddComment/28CBB341-BE78-4901-966B-11961288FA5B
+Content-Type: application/json
+
+{
+  "id": "28CBB341-BE78-4901-966B-11961288FA5B",
+  "comment": "managed to make it work with sql",
+  "username": "user3"
+}
+
+####
+
+# Like a post
+PUT https://localhost:7275/api/v1/LikePost/cc6f514f-2845-4c15-ac7c-cf3e050c3bd0
+
+####
+
+#Remove Comment
+DELETE  https://localhost:7275/api/v1/RemoveComment/28CBB341-BE78-4901-966B-11961288FA5B
+  Content-Type: application/json
+ {
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "commentId": "1BF09377-2190-424D-91A2-8599BA27C05D",
+  "username": "user3"
+ }
+
+####
+
+PUT https://localhost:7275/api/v1/EditMessage/6B909FF9-2C58-4609-8C22-22F6FD13F6C2
+ Content-Type: application/json
+
+{
+  "message": "Ok now, let'\''s modify"
+}'
