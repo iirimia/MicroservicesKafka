@@ -2,6 +2,8 @@ using System.Text.Json;
 using Confluent.Kafka;
 using CQRS.Core.Consumers;
 using CQRS.Core.Events;
+using Microsoft.Extensions.Options;
+using Post.Query.Infrastructure.Converters;
 using Post.Query.Infrastructure.Handlers;
 
 namespace Post.Query.Infrastructure.Consumers
@@ -11,13 +13,15 @@ namespace Post.Query.Infrastructure.Consumers
         private readonly ConsumerConfig _config;
         private readonly IEventHandler _eventHandler;
 
-        public EventConsumer(ConsumerConfig config, IEventHandler eventHandler)
+        public EventConsumer(
+            IOptions<ConsumerConfig> config,
+            IEventHandler eventHandler)
         {
-            _config = config;
+            _config = config.Value;
             _eventHandler = eventHandler;
         }
 
-        public void Consume<T>(string topic) where T : BaseEvent
+        public void Consume(string topic)
         {
             using var consumer = new ConsumerBuilder<string, string>(_config)
                     .SetKeyDeserializer(Deserializers.Utf8)
@@ -32,12 +36,13 @@ namespace Post.Query.Infrastructure.Consumers
 
                 if (consumeResult?.Message == null) continue;
 
-                var @event = JsonSerializer.Deserialize(consumeResult.Message.Value, typeof(T));
+                var options = new JsonSerializerOptions { Converters = { new EventJsonConverter() } };
+                var @event = JsonSerializer.Deserialize<BaseEvent>(consumeResult.Message.Value, options);
                 var handlerMethod = _eventHandler.GetType().GetMethod("On", new Type[] { @event.GetType() });
 
                 if (handlerMethod == null)
                 {
-                    throw new ArgumentNullException(nameof(handlerMethod), "Could not find event handler method.");
+                    throw new ArgumentNullException(nameof(handlerMethod), "Could not find event handler method!");
                 }
 
                 handlerMethod.Invoke(_eventHandler, new object[] { @event });

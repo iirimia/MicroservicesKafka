@@ -2,7 +2,6 @@ using CQRS.Core.Consumers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Post.Common.Events;
 
 namespace Post.Query.Infrastructure.Consumers
 {
@@ -19,19 +18,14 @@ namespace Post.Query.Infrastructure.Consumers
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Event Consumer Service Running");
+            _logger.LogInformation("Event Consumer Service running.");
 
             using (IServiceScope scope = _serviceProvider.CreateScope())
             {
                 var eventConsumer = scope.ServiceProvider.GetRequiredService<IEventConsumer>();
+                var topic = Environment.GetEnvironmentVariable("KAFKA_TOPIC");
 
-                Task.Run(() => eventConsumer.Consume<PostCreatedEvent>(nameof(PostCreatedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<MessageUpdatedEvent>(nameof(MessageUpdatedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<PostLikedEvent>(nameof(PostLikedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<CommentAddedEvent>(nameof(CommentAddedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<CommentUpdatedEvent>(nameof(CommentUpdatedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<CommentRemovedEvent>(nameof(CommentRemovedEvent)), cancellationToken);
-                Task.Run(() => eventConsumer.Consume<PostRemovedEvent>(nameof(PostRemovedEvent)), cancellationToken);
+                Task.Run(() => eventConsumer.Consume(topic), cancellationToken);
             }
 
             return Task.CompletedTask;

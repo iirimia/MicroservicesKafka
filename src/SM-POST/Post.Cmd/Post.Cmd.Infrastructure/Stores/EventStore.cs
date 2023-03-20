@@ -53,7 +53,9 @@ namespace Post.Cmd.Infrastructure.Stores
                 };
 
                 await _eventStoreRepository.SaveAsync(eventModel);
-                await _eventProducer.ProduceAsync(eventType, @event);
+
+                var topic = Environment.GetEnvironmentVariable("KAFKA_TOPIC");
+                await _eventProducer.ProduceAsync(topic, @event);
             }
         }
     }
