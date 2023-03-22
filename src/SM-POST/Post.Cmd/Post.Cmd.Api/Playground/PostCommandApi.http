@@ -3,8 +3,8 @@ POST https://localhost:7275/api/v1/NewPost
 Content-Type: application/json
 
 {
-  "author": "User8",
-  "message": "Getting confusing"
+  "author": "User3",
+  "message": "My first comment"
 }
 
 ####
@@ -43,3 +43,13 @@ PUT https://localhost:7275/api/v1/EditMessage/6B909FF9-2C58-4609-8C22-22F6FD13F6
 {
   "message": "Ok now, let'\''s modify"
 }'
+
+####
+
+#Restore read database
+POST https://localhost:7275/api/v1/RestoreReadDb
+Content-Type: application/json
+
+{
+
+}

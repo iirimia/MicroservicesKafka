@@ -2,9 +2,31 @@
 Udemy course to learn microsevices with Kafka
 
 
+## Application Architecture Diagram
+
+![alt text](./docs/Architecture%2BOverview.drawio.png)
+
 ## CQRS Pattern
 
 CQRS stands for Command Query Responsibility Segregation. It segregates the read and write operations on a data store into queries and commands respectively. Queries perform read operations and return the DTOs without modifying any data. Commands perform writes, updates, or delete operations on the data. This distinction helps manage data access complexity in large applications by making them more decoupled and testable. Moreover, this distinction also helps to scale the read and write operations independent of each other to match skewed workloads and have separate data schemes optimized for each operation type. However, applications with simple data access requirements might not benefit from CQRS as it may add additional complexity.
+
+## Event Sourcing 
+
+Event sourcing is a software design pattern that is commonly combined with CQRS. Event sourcing defines an approach where all the changes that are made to an object or entity are stored as a sequence of immutable events to an event store as opposed to just storing the current state.
+One of the benefits of events sourcing is that it contains a complete auditable log. In other words, all the state changes that were applied to the object or entity instead of just storing the latest or current state ss is common in traditional applications
+Also, the state of an object, usually the aggregate, can be recreated by replaying the event store.
+It improves performance since all events are simply appended to the event store. In other words, we never do any update or delete operations on the event store.
+And finally, in the case of failure, the event store can be used to restore the entire read database.
+
+### Event Store - Key Considerations
+
+The event store, also known as the write database, is a database where the data is stored as a sequence of immutable events.
+
++ An event store must be an append only store, no update or delete operations should be allowed.
++ Each event that is saved, should represent the version or state of an aggregate at any given point in time.
++ Events should be stored in chronological order and new events should be appended to the previous event.
++ The state of the aggregate should be recreatable by replaying the event store
++ It should implement optimistic concurrency control.
 
 ## Mediator Pattern
 
@@ -14,9 +36,7 @@ In this pattern, the mediator object acts as a central hub that controls the com
 
 The Mediator Pattern is especially useful in complex systems where objects interact with each other in many different ways. By encapsulating the communication logic in a single mediator object, it becomes easier to manage the complexity and maintain the system over time. It also makes it easier to extend the system by adding new objects, as the mediator can be modified to handle the interactions between them.
 
-Some common examples of the Mediator Pattern in practice include chat applications, where a chat room acts as a mediator between multiple users, and air traffic control systems, where a central controller manages the interactions between multiple aircraft.
-
-![alt text](./docs/Mediator+Pattern.drawio.png)
+![alt text](./docs/mediator-design-pattern.png)
 
 ![alt text](./docs/Mediator%2B-%2BCommand%2BDispatching.drawio.png)
 
@@ -40,6 +60,28 @@ With the Repository Pattern, Kafka can be used as a data store for storing and r
 
 Overall, Kafka can be a powerful tool for implementing both the Mediator Pattern and the Repository Pattern, providing scalable and flexible solutions for communication and data storage in complex systems.
 
-## Application Architecture Diagram
+## Kafka producer
 
-![alt text](./docs/Architecture%2BOverview.drawio.png)
+Kafka producer is used to send or produce messages to one or more Kafka topics. Kafka produces also serialize compresses and load balances data among Kafka brokers through partitioning.
+A Kafka broker is a server running in a Kafka cluster, usually in the form of a container. Kafka clusters are usually made up of one or more brokers. Having multiple Kafka brokers allows for load balancing redundancy and reliable failover. 
+Brokers or stateless are relying on Apache Zookeeper to manage the state of the cluster.
+Apache Zookeeper is thus responsible to manage the cluster and the election of the broker leader.
+It is advised to utilize a minimum of three brokers to achieve reliable fail over.
+However, a single broker can handle hundreds of thousands of messages without a performance impact.
+
+
+![alt text](./docs/Apache%2BKafka%2BProducer.drawio.png)
+
+### Partition in Kafka
+
+Topics are divided into partitions in a Kafka cluster, and partitions are replicated across brokers.
+You can view a Kafka topic as a channel through which event data is streamed.
+Producers always publishes or produces event messages to topics while consumers read messages from a topic that they subscribe to.
+Some people like to compare a topic with a database table, while others compare to a log or a queue.
+
+![alt text](./docs/Kafka%2BArchitecture.drawio.png)
+
+### Kafka Consumer
+
+Kafka Consumer 
+![alt text](./docs/Apache%2BKafka%2BConsumer%2B(.NET).drawio.png)
