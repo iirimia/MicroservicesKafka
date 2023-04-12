@@ -3,6 +3,7 @@ version: "3.4"
 services:
   zookeeper:
     image: bitnami/zookeeper
+    container_name: zookeper-container
     restart: always
     ports:
       - "2181:2181"
@@ -12,6 +13,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
     image: bitnami/kafka
+    container_name: kafka-container
     ports:
       - "9092:9092"
     restart: always
@@ -53,7 +55,7 @@ volumes:
   mongodb_data:
     driver: local
    
-networks:
-  default:
-    external:
-      name: mydockernetwork
+# networks:
+#   default:
+#     external:
+#       name: mydockernetwork

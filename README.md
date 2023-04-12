@@ -85,3 +85,8 @@ Some people like to compare a topic with a database table, while others compare 
 
 Kafka Consumer 
 ![alt text](./docs/Apache%2BKafka%2BConsumer%2B(.NET).drawio.png)
+
+## How to build
+1. First start docker and run `docker compose up -d`
+2. Check containers run: `docker ps -a`
+3. From src\SM-POST run `dotnet build` which will restore nuget packages and build the application.

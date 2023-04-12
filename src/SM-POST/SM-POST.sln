@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Post.Query.Domain", "Post.Q
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Post.Query.Infrastructure", "Post.Query\Post.Query.Infrastructure\Post.Query.Infrastructure.csproj", "{CF0CB596-7C1C-4CB6-BE26-FFF323165024}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Core", "..\CQRS-ES\CQRS.Core\CQRS.Core.csproj", "{0C5AC9C1-4431-41AD-9365-29BCD2D55241}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{CF0CB596-7C1C-4CB6-BE26-FFF323165024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF0CB596-7C1C-4CB6-BE26-FFF323165024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF0CB596-7C1C-4CB6-BE26-FFF323165024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5AC9C1-4431-41AD-9365-29BCD2D55241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5AC9C1-4431-41AD-9365-29BCD2D55241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5AC9C1-4431-41AD-9365-29BCD2D55241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5AC9C1-4431-41AD-9365-29BCD2D55241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

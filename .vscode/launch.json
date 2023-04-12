@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/SM-POST/Post.Cmd/Post.Cmd.Api/bin/Debug/net7.0/Post.Cmd.Api.dll",
+            "program": "${workspaceFolder}/src/SM-POST/Post.Cmd/Post.Cmd.Api/bin/Debug/net6.0/Post.Cmd.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/SM-POST/Post.Cmd/Post.Cmd.Api",
             "stopAtEntry": false,
@@ -37,7 +37,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/SM-POST/Post.Query/Post.Query.Api/bin/Debug/net7.0/Post.Query.Api.dll",
+            "program": "${workspaceFolder}/src/SM-POST/Post.Query/Post.Query.Api/bin/Debug/net6.0/Post.Query.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/SM-POST/Post.Query/Post.Query.Api",
             "stopAtEntry": false,

@@ -1,4 +1,3 @@
-
 using Confluent.Kafka;
 using CQRS.Core.Consumers;
 using CQRS.Core.Infrastructure;

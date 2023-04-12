@@ -3,8 +3,8 @@ POST https://localhost:7275/api/v1/NewPost
 Content-Type: application/json
 
 {
-  "author": "User3",
-  "message": "My first comment"
+  "author": "User1",
+  "message": "My first comment. I like this way of running requests"
 }
 
 ####
